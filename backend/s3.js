@@ -29,12 +29,18 @@ exports.uploadFile = uploadFile
 
 
 // downloads a file from s3
-function getFileStream(fileKey) {
+async function getFileStream(fileKey) {
   const downloadParams = {
     Key: fileKey,
     Bucket: bucketName
   }
-
-  return s3.getObject(downloadParams).createReadStream()
+  try {
+      return s3.getObject(downloadParams)?.createReadStream()
+    // const data = await s3.getObject(downloadParams).promise();
+    // return data.Body.toString('utf-8');
+  } catch (e) {
+    //console.log(`Could not retrieve file from S3: ${e.message}`)
+     throw new Error(`Could not retrieve file from S3: ${e.message}`)
+  }
 }
 exports.getFileStream = getFileStream

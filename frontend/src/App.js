@@ -43,9 +43,11 @@ function App() {
           <img src={image}></img>
         </div>
       ))}
-
-      <img src="/images/9fa06d3c5da7aec7f932beb5b3e60f1d"></img>
-
+    {/* this call to the express server route images */}
+    <div>with server</div>
+      <img src="images/8a7a8ae26fa60401e0ecc1fd69bf7fa9"></img>
+      <div>directly</div>
+      <img src='https://rao-s3-direct-upload.s3.us-west-2.amazonaws.com/8a7a8ae26fa60401e0ecc1fd69bf7fa9' />
     </div>
   );
 }
